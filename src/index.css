@@ -1,10 +1,10 @@
 body {
-  font-family: sans-serif;
   background-color: #222;
+  font-family: "Oxygen", sans-serif;
 }
 
 header {
-  color: #fff;
+  color: white;
   text-align: center;
   font-size: 2rem;
 }
@@ -39,14 +39,14 @@ header {
 .react-3d-carousel {
   position: relative;
 }
-.react-3d-carousel .slider-container {
+.slider-container {
   position: absolute;
   left: 50%;
   top: 0%;
   width: 90%;
   margin: 0px auto 0px -45%;
 }
-.react-3d-carousel .slider-container .slider-content {
+.slider-container .slider-content {
   position: relative;
   left: 50%;
   top: 0%;
@@ -54,7 +54,7 @@ header {
   height: 80%;
   transform: translateX(-50%);
 }
-.react-3d-carousel .slider-container .slider-content .slider-single {
+.slider-container .slider-content .slider-single {
   position: absolute;
   z-index: 0;
   left: 0;
@@ -62,11 +62,7 @@ header {
   width: 100%;
   transition: z-index 0ms 250ms;
 }
-.react-3d-carousel
-  .slider-container
-  .slider-content
-  .slider-single
-  .slider-single-content {
+.slider-container .slider-content .slider-single .slider-single-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,10 +166,7 @@ header {
   color: #fff;
   transform: translateY(-50%);
   padding: 10px 10px;
-  border-top: 2px solid #fdc84b;
-  border-right: 2px solid #fdc84b;
-  border-bottom: 2px solid #fdc84b;
-  border-left: 2px solid #fdc84b;
+  font-size: 2rem;
 }
 .react-3d-carousel .slider-container .slider-right {
   display: none;
@@ -193,8 +186,41 @@ header {
   color: #fff;
   transform: translateY(-50%);
   padding: 10px 10px;
-  border-top: 2px solid #fdc84b;
-  border-right: 2px solid #fdc84b;
-  border-bottom: 2px solid #fdc84b;
-  border-left: 2px solid #fdc84b;
+  font-size: 2rem;
+}
+
+.loader-wrapper {
+  text-align: center;
+}
+
+.slide-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-single.active .desc-wrapper h1 {
+  color: #fff;
+}
+
+.slider-single.active .desc-wrapper {
+  text-align: center;
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .react-3d-carousel
+    .slider-container
+    .slider-content
+    .slider-single
+    .slider-single-content
+    img {
+    float: left;
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }

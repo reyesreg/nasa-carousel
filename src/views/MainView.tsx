@@ -1,34 +1,46 @@
 import useApi, { ApiResponseType, NasaImageType } from "../hooks/useApiHook";
 import { constructURL } from "../helpers";
 
-import { Carousel } from "../components/Carousel";
+import Loader from "../components/Loader";
+import Carousel from "../components/Carousel";
 
 const MainView = () => {
   const response: ApiResponseType = useApi(constructURL());
-  if (response?.loading) return <h1>Loading</h1>;
+  if (response?.loading)
+    return (
+      <div className="loader-wrapper">
+        <Loader />
+      </div>
+    );
 
   const carouselImages =
     response.data &&
-    response.data.map((x, index) => {
-      return <Slide image={x} key={index} />;
+    response.data.map((imgDetails, index) => {
+      return <Slide imgDetails={imgDetails} key={index} />;
     });
 
   return (
     <div className="App">
-      <header>NASA photo of the day!</header>
-      <Carousel slides={carouselImages || []} autoplay />
+      <header>NASA photo of the day</header>
+      <br />
+      <Carousel rawSlides={carouselImages || []} interval={1500} />
     </div>
   );
 };
 
-const Slide = ({ image }: { image: NasaImageType }) => {
+const Slide = ({ imgDetails }: { imgDetails: NasaImageType }) => {
   return (
-    <div>
+    <div className="slide-wrapper">
       <img
-        src={image?.url || image?.thumbnail_url || ""}
-        alt="nasaimage"
+        src={imgDetails?.url || imgDetails?.thumbnail_url || ""}
+        alt={imgDetails?.title}
         width={500}
       />
+      <br />
+      <div className="desc-wrapper">
+        <h1>{imgDetails?.title}</h1>
+        <p>{imgDetails?.date}</p>
+      </div>
     </div>
   );
 };
